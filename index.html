@@ -1,10 +1,68 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
+
 <head>
-    <title>我的GitHub主页</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Zhouyang Jia</title>
+    <link rel="stylesheet" href="assets/styles.css">
 </head>
+
 <body>
-    <h1>欢迎访问我的个人主页！</h1>
-    <p>在这里介绍我自己和我的项目。</p>
+    <header class="site-header">
+        <div class="container header-inner">
+            <div class="lang-switch">
+                <button id="btn-en" class="active">English</button>
+                <button id="btn-zh">中文</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="hero">
+            <img id="profile-photo" src="assets/zhouyang.jpg" alt="Profile photo" />
+            <div class="intro">
+                <h2 data-i18n-key="name"></h2>
+                <p class="position" data-i18n-key="position"></p>
+                <p class="bio" data-i18n-key="bio"></p>
+            </div>
+        </section>
+
+        <section class="education" aria-labelledby="education-heading">
+            <h3 id="education-heading" data-i18n-key="education"></h3>
+            <ul id="education-list" data-i18n-key="educationHTML">
+                <!-- Filled by script -->
+            </ul>
+        </section>
+
+        <section class="papers" aria-labelledby="papers-heading">
+            <h3 id="papers-heading" data-i18n-key="papers"></h3>
+            <div id="publications" data-i18n-key="publicationsHTML">
+                <!-- Filled by script -->
+            </div>
+        </section>
+
+        <section class="awards" aria-labelledby="awards-heading">
+            <h3 id="awards-heading" data-i18n-key="awards"></h3>
+            <div id="awards" data-i18n-key="awardsHTML">
+                <!-- Filled by script -->
+            </div>
+        </section>
+
+        <section class="contact" aria-labelledby="contact-heading">
+            <h3 id="contact-heading" data-i18n-key="contact"></h3>
+            <p><span data-i18n-key="email"></span></p>
+            <p><span data-i18n-key="address"></span></p>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <small data-i18n-key="copyright"></small>
+        </div>
+    </footer>
+
+    <script src="assets/script.js"></script>
 </body>
+
 </html>

@@ -1,0 +1,297 @@
+[
+    {
+        "year": "2025",
+        "papers": [
+            {
+                "title": "Unseen Horizons: Unveiling the Real Capability of LLM",
+                "authors": "Yuanliang Zhang, Yifan Xie, Shanshan Li, Ke Liu, Chong Wang, Zhouyang Jia, Xiangbing Huang, Jie Song, Chaopeng Luo, Zhizheng Zheng, Rulin Xu, Yitong Liu, Si Zheng, and Xiangke Liao",
+                "venue": "ICSE 2025 (Distinguished Paper Award)",
+                "pdf": "assets/papers/2025 ICSE.pdf",
+                "type": "CCF A"
+            },
+            {
+                "title": "HotLD: a Workload-Aware Method for Global Code-Layout Optimization of Shared Libraries",
+                "authors": "Xueqin Ning, Jun Ma, Zhouyang Jia, Yusong Tan, Jie Yu, Pan Dong, Jing Wang, and Lianghao Shen",
+                "venue": "TACO 2025",
+                "pdf": "assets/papers/2025 TACO.pdf",
+                "type": "CCF A"
+            },
+            {
+                "title": "Error Delayed is Not Error Handled: Understanding and Fixing Propagated Error-Handling Bugs",
+                "authors": "Haoran Liu, Shanshan Li, Zhouyang Jia, Yuanliang Zhang, Linxiao Bai, Si Zheng, Xiaoguang Mao, and Xiangke Liao",
+                "venue": "FSE 2025",
+                "pdf": "assets/papers/2025 FSE Liu.pdf",
+                "type": "CCF A"
+            },
+            {
+                "title": "Bridging Operator Semantic Inconsistencies: A Source-level Cross-framework Model Conversion Approach",
+                "authors": "Xingpei Li, Yan Lei, Zhouyang Jia, Yuanliang Zhang, Haoran Liu, Liqian Chen, Wei Dong, and Shanshan Li",
+                "venue": "FSE 2025",
+                "pdf": "assets/papers/2025 FSE Li.pdf",
+                "type": "CCF A"
+            },
+            {
+                "title": "DepState: Detecting Synchronization Failure Bugs in Distributed Database Management Systems",
+                "authors": "Cundi Fang, Jie Liang, Zhiyong Wu, Jingzhou Fu, Zhouyang Jia, Chun Huang, Yu Jiang, and Shanshan Li",
+                "venue": "ISSTA 2025",
+                "pdf": "assets/papers/2025 ISSTA.pdf",
+                "type": "CCF A"
+            },
+            {
+                "title": "Survey on Performance Bug Detection in System Software (in Chinese)",
+                "authors": "Haochen He, Shanshan Li, Zhouyang Jia, Yiheng Yao, Yuanliang Zhang, Ji Wang, and Xiangke Liao",
+                "venue": "Journal of Computers",
+                "pdf": "assets/papers/2025 JOC.pdf",
+                "type": "CCF A"
+            },
+            {
+                "title": "𝜇Scope: Evaluating storage stack robustness against SSD's latency variation",
+                "authors": "Linxiao Bai, Shanshan Li, Zhouyang Jia, Yu Jiang, Yuanliang Zhang, Zichen Xu, Bin Lin, Si Zheng, and Xiangke Liao",
+                "venue": "JSA 2025",
+                "pdf": "assets/papers/2025 JSA.pdf",
+                "type": "CCF B"
+            },
+            {
+                "title": "MetaCoder: Generating Code from Multiple Perspectives",
+                "authors": "Xin Chen, Zhijie Jiang, Yong Guo, Zhouyang Jia, Si Zheng, Yuanliang Zhang, and Shanshan Li",
+                "venue": "Internetware 2025",
+                "pdf": "assets/papers/2025 Internetware.pdf",
+                "type": "CCF C"
+            }
+        ]
+    },
+    {
+        "year": "2024",
+        "papers": [
+            {
+                "title": "How to Pet a Two-Headed Snake? Solving Cross-Repository Compatibility Issues with Hera",
+                "authors": "Yifan Xie, Zhouyang Jia (co-first), Shanshan Li, Ying Wang, Jun Ma, Xiaoling Li, Haoran Liu, Ying Fu, and Xiangke Liao",
+                "venue": "ASE 2024",
+                "pdf": "assets/papers/2024 ASE.pdf",
+                "type": "CCF A"
+            },
+            {
+                "title": "Cut to the Chase: An Error-Oriented Approach to Detect Error-Handling Bugs",
+                "authors": "Haoran Liu, Zhouyang Jia, Shanshan Li, Yan Lei, Yue Yu, Yu Jiang, Xiaoguang Mao, and Xiangke Liao",
+                "venue": "FSE 2024",
+                "pdf": "assets/papers/2024 FSE.pdf",
+                "type": "CCF A"
+            },
+            {
+                "title": "MissConf: LLM-Enhanced Reproduction of Configuration-Triggered Bugs",
+                "authors": "Ying Fu, Teng Wang, Shanshan Li, Jinyan Ding, Shulin Zhou, Zhouyang Jia, Wang Li, Yu Jiang, and Xiangke Liao",
+                "venue": "ICSE 2024",
+                "pdf": "assets/papers/2024 ICSE.pdf",
+                "type": "CCF A"
+            },
+            {
+                "title": "Who is in Charge here? Understanding How Runtime Configuration Affects Software along with Variables&Constants",
+                "authors": "Chaopeng Luo, Yuanliang Zhang, Haochen He, Zhouyang Jia, Teng Wang, Shulin Zhou, Si Zheng, and Shanshan Li",
+                "venue": "APSEC 2024 (Distinguished Paper Award)",
+                "pdf": "assets/papers/2024 APSEC.pdf",
+                "type": "CCF C"
+            }
+        ]
+    },
+    {
+        "year": "2023",
+        "papers": [
+            {
+                "title": "Understanding and Detecting On-the-Fly Configuration Bugs",
+                "authors": "Teng Wang, Zhouyang Jia (co-first), Shanshan Li, Si Zheng, Yue Yu, Erci Xu, Shaoliang Peng, and Xiangke Liao",
+                "venue": "ICSE 2023 (Distinguished Paper Award)",
+                "pdf": "assets/papers/2023 ICSE.pdf",
+                "type": "CCF A"
+            },
+            {
+                "title": "When Database Meets New Storage Devices: Understanding and Exposing Performance Mismatches via Configurations",
+                "authors": "Haochen He, Erci Xu, Shanshan Li, Zhouyang Jia, Si Zheng, Yue Yu, Jun Ma, and Xiangke Liao",
+                "venue": "VLDB 2023",
+                "pdf": "assets/papers/2023 VLDB.pdf",
+                "type": "CCF A"
+            },
+            {
+                "title": "ConfTainter: Static Taint Analysis For Configuration Options",
+                "authors": "Teng Wang, Haochen He, Xiaodong Liu, Shanshan Li, Zhouyang Jia, Yu Jiang, Qing Liao, and Wang Li",
+                "venue": "ASE 2023",
+                "pdf": "assets/papers/2023 ASE.pdf",
+                "type": "CCF A"
+            },
+            {
+                "title": "MulCS: Towards a Unified Deep Representation for Multilingual Code Search",
+                "authors": "Yingwei Ma, Yue Yu, Shanshan Li, Zhouyang Jia, Jun Ma, Rulin Xu, Wei Dong, and Xiangke Liao",
+                "venue": "SANER 2023 (Distinguished Paper Award)",
+                "pdf": "assets/papers/2023 SANER.pdf",
+                "type": "CCF B"
+            },
+            {
+                "title": "A Two-Stage Framework for Ambiguous Classification in Software Engineering",
+                "authors": "Jiaying Li, Yan Lei, Shanshan Li, Haifang Zhou, Yue Yu, Zhouyang Jia, Yingwei Ma, and Teng Wang",
+                "venue": "ISSRE 2023",
+                "pdf": "assets/papers/2023 ISSRE.pdf",
+                "type": "CCF B"
+            },
+            {
+                "title": "WMWatcher: Preventing Workload-Related Misconfigurations in Production Environment",
+                "authors": "Shulin Zhou, Zhijie Jiang, Shanshan Li, Xiaodong Liu, Zhouyang Jia, Yuanliang Zhang, Jun Ma, and Haibo Mi ",
+                "venue": "APSEC 2023",
+                "pdf": "assets/papers/2023 APSEC.pdf",
+                "type": "CCF C"
+            }
+        ]
+    },
+    {
+        "year": "2022",
+        "papers": [
+            {
+                "title": "Multi-Intention-Aware Configuration Selection for Performance Tuning",
+                "authors": "Haochen He, Zhouyang Jia (co-first), Shanshan Li, Yue Yu, Chenglong Zhou, Qing Liao, Ji Wang, and Xiangke Liao",
+                "venue": "ICSE 2022",
+                "pdf": "assets/papers/2022 ICSE He.pdf",
+                "type": "CCF A"
+            },
+            {
+                "title": "Bridging Pre-trained Models and Downstream Tasks for Source Code Understanding",
+                "authors": "Deze Wang, Zhouyang Jia, Shanshan Li, Yue Yu, Yun Xiong, Wei Dong, and Xiangke Liao",
+                "venue": "ICSE 2022",
+                "pdf": "assets/papers/2022 ICSE Wang.pdf",
+                "type": "CCF A"
+            }
+        ]
+    },
+    {
+        "year": "2021",
+        "papers": [
+            {
+                "title": "DepOwl: Detecting Dependency Bugs to Prevent Compatibility Failures",
+                "authors": "Zhouyang Jia, Shanshan Li, Tingting Yu, Chen Zeng, Erci Xu, Xiaodong Liu, Ji Wang, and Xiangke Liao",
+                "venue": "ICSE 2021",
+                "pdf": "assets/papers/2021 ICSE.pdf",
+                "type": "CCF A"
+            },
+            {
+                "title": "Challenges and opportunities: an in-depth empirical study on configuration error injection testing",
+                "authors": "Wang Li, Zhouyang Jia (co-first), Shanshan Li, Yuanliang Zhang, Teng Wang, Erci Xu, Ji Wang, and Xiangke Liao",
+                "venue": "ISSTA 2021",
+                "pdf": "assets/papers/2021 ISSTA.pdf",
+                "type": "CCF A"
+            },
+            {
+                "title": "ConfInLog: Leveraging Software Logs to Infer Configuration Constraints",
+                "authors": "Shulin Zhou, Xiaodong Liu, Shanshan Li, Zhouyang Jia, Yuanliang Zhang, Teng Wang, Wang Li, and Xiangke Liao",
+                "venue": "ICPC 2021 (Honorable Mention)",
+                "pdf": "assets/papers/2021 ICPC.pdf",
+                "type": "CCF B"
+            }
+        ]
+    },
+    {
+        "year": "2020",
+        "papers": [
+            {
+                "title": "CP-Detector: Using Configuration-related Performance Properties to Expose Performance Bugs",
+                "authors": "Haochen He, Zhouyang Jia (co-first), Shanshan Li, Erci Xu, Tingting Yu, Yue Yu, Ji Wang, and Xiangke Liao",
+                "venue": "ASE 2020",
+                "pdf": "assets/papers/2020 ASE.pdf",
+                "type": "CCF A"
+            },
+            {
+                "title": "Intention-aware log automation (in Chinese)",
+                "authors": "Zhouyang Jia, Shanshan Li, Xiaodong Liu, Ji Wang, and Xiangke Liao",
+                "venue": "SCIENTIA SINICA Informationis, 2020, 50: 1612–1628",
+                "pdf": "assets/papers/2020 中国科学.pdf",
+                "type": "CCF A"
+            },
+            {
+                "title": "Guiding log revisions by learning from software evolution history",
+                "authors": "Shanshan Li, Xu Niu, Zhouyang Jia, Xiangke Liao, Ji Wang, and Tao Li",
+                "venue": "Empirical Software Engineering",
+                "pdf": "assets/papers/2020 ESEM.pdf",
+                "type": "CCF B"
+            }
+        ]
+    },
+    {
+        "year": "2019",
+        "papers": [
+            {
+                "title": "Detecting Error-Handling Bugs without Error Specification Input",
+                "authors": "Zhouyang Jia, Shanshan Li, Tingting Yu, Xiangke Liao, Ji Wang, Xiaodong Liu, and Yunhuai Liu",
+                "venue": "ASE 2019",
+                "pdf": "assets/papers/2019 ASE.pdf",
+                "type": "CCF A"
+            },
+            {
+                "title": "Automatically detecting missing cleanup for ungraceful exits",
+                "authors": "Zhouyang Jia, Shanshan Li, Tingting Yu, Xiangke Liao, and Ji Wang",
+                "venue": "FSE 2019",
+                "pdf": "assets/papers/2019 FSE.pdf",
+                "type": "CCF A"
+            }
+        ]
+    },
+    {
+        "year": "2018",
+        "papers": [
+            {
+                "title": "SMARTLOG: Place error log statement by deep understanding of log intention",
+                "authors": "Zhouyang Jia, Shanshan Li, Xiaodong Liu, Xiangke Liao, and Yunhuai Liu",
+                "venue": "SANER 2018 (Distinguished Paper Award)",
+                "pdf": "assets/papers/2018 SANER.pdf",
+                "type": "CCF B"
+            },
+            {
+                "title": "Logtracker: learning log revision behaviors proactively from software evolution history",
+                "authors": "Shanshan Li, Xu Niu, Zhouyang Jia, Ji Wang, Haochen He, and Teng Wang",
+                "venue": "ICPC 2018",
+                "pdf": "assets/papers/2018 ICPC.pdf",
+                "type": "CCF B"
+            },
+            {
+                "title": "NotOnlyLog: Mining Patch-Log Associations from Software Evolution History to Enhance Failure Diagnosis Capability",
+                "authors": "Shuqi Chi, Shanshan Li, Yong Guo, Wei Dong, Zhouyang Jia, Haochen Hen, and Qing Liao",
+                "venue": "APSEC 2018",
+                "pdf": "assets/papers/2018 APSEC.pdf",
+                "type": "CCF C"
+            },
+            {
+                "title": "Do You Really Know How to Configure Your Software? Configuration Constraints in Source Code May Help",
+                "authors": "Xiangke Liao, Shulin Zhou, Shanshan Li, Zhouyang Jia, Xiaodong Liu, and Haochen He.",
+                "venue": "IEEE Transactions on Reliability",
+                "pdf": "assets/papers/2018 TR Liao.pdf",
+                "type": "CCF C"
+            },
+            {
+                "title": "ConfVD: System Reactions Analysis and Evaluation Through Misconfiguration Injection",
+                "authors": "Shanshan Li, Wang Li, Xiangke Liao, Shaoliang Peng, Shulin Zhou, Zhouyang Jia, and Teng Wang",
+                "venue": "IEEE Transactions on Reliability",
+                "pdf": "assets/papers/2018 TR Li.pdf",
+                "type": "CCF C"
+            }
+        ]
+    },
+    {
+        "year": "2017",
+        "papers": [
+            {
+                "title": "ConfTest: Generating Comprehensive Misconfiguration for System Reaction Ability Evaluation",
+                "authors": "Wang Li, Shanshan Li, Xiangke Liao, Xiangyang Xu, Shulin Zhou, and Zhouyang Jia",
+                "venue": "EASE 2017",
+                "pdf": "assets/papers/2017 EASE.pdf",
+                "type": "CCF C"
+            }
+        ]
+    },
+    {
+        "year": "2016",
+        "papers": [
+            {
+                "title": "Survey on Log Research of Large Scale Software System (in Chinese)",
+                "authors": "Xiangke Liao, Shanshan Li, Wei Dong, Zhouyang Jia, Xiaodong Liu, and Shulin Zhou",
+                "venue": "Journal of Software. 27, 8 (2016), 1934-1947.",
+                "pdf": "assets/papers/2016 软件学报.pdf",
+                "type": "CCF A"
+            }
+        ]
+    }
+]
