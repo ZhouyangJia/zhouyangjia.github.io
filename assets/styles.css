@@ -37,6 +37,28 @@
     gap: 12px;
     margin-bottom: 8px;
     border: 1px solid #eef3ff;
+
+    /* 悬浮过渡效果 */
+    transition: transform .14s ease, box-shadow .14s ease;
+}
+
+/* 悬浮时上抬并加深阴影 */
+.pub-item:hover,
+.papers li:hover,
+.awards li:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 14px 32px rgba(42, 108, 223, 0.08);
+}
+
+/* 移动端减弱或取消位移以避免布局抖动 */
+@media (max-width: 700px) {
+
+    .pub-item:hover,
+    .papers li:hover,
+    .awards li:hover {
+        transform: none;
+        box-shadow: 0 8px 18px rgba(42, 108, 223, 0.06);
+    }
 }
 
 /* 文本部分独立为列布局 */
@@ -171,31 +193,117 @@ body {
     color: #fff
 }
 
+/* 美化照片与背景介绍（hero 区） */
 .hero {
     display: flex;
     gap: 20px;
     align-items: center;
-    padding: 24px 0
+    padding: 22px;
+    margin-top: 12px;
+    background: linear-gradient(180deg, rgba(245, 247, 255, 0.9), rgba(238, 243, 255, 0.6));
+    border-radius: 14px;
+    border: 1px solid rgba(42, 108, 223, 0.06);
+    box-shadow: 0 10px 30px rgba(42, 108, 223, 0.04);
+    backdrop-filter: blur(4px);
 }
 
+/* 头像：固定大小、矩形（宽高反过来）、禁止伸缩，稳定布局 */
 .hero img {
     width: 120px;
     height: 150px;
+    /* 之前是 150x120，已反过来为 120x150 */
     object-fit: cover;
     border-radius: 10px;
     border: 4px solid #fff;
-    box-shadow: 0 6px 20px rgba(42, 108, 223, 0.12);
-    flex: 0 0 150px;
-    max-width: 120px;
+    box-shadow: 0 12px 30px rgba(20, 40, 80, 0.12);
+    flex: 0 0 120px;
+    /* 保持横向空间稳定（以宽度为基准） */
     min-width: 120px;
     min-height: 150px;
+    max-width: 120px;
     max-height: 150px;
-    align-self: center;
+    transition: transform .18s ease, box-shadow .18s ease;
 }
 
+/* 头像悬停微放大 */
+.hero img:hover {
+    transform: translateY(-4px) scale(1.03);
+    box-shadow: 0 18px 36px rgba(20, 40, 80, 0.16);
+}
+
+/* 介绍卡片：半透明卡片式，内部排版清晰 */
+.intro {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 12px 16px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    min-width: 0;
+    /* 允许文本换行 */
+}
+
+/* 昵称/姓名 */
+.intro .name,
 .intro h2 {
-    font-size: 1.1rem;
-    margin-bottom: 8px
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: var(--text);
+    letter-spacing: -0.2px;
+}
+
+/* 职称/单位 */
+.intro .position {
+    color: var(--muted);
+    font-size: 0.95rem;
+    font-weight: 600;
+}
+
+/* 简短自我介绍 */
+.intro p,
+.intro .bio {
+    color: var(--text);
+    font-size: 1rem;
+    line-height: 1.45;
+    margin-top: 6px;
+}
+
+/* 小动作：当 hero 悬停时淡化背景以突出头像（桌面） */
+.hero:hover .intro {
+    transform: translateY(0);
+}
+
+/* 在狭窄屏幕缩放头像与内边距 */
+@media (max-width: 700px) {
+    .hero {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+        padding: 12px;
+    }
+
+    /* 移动端矩形头像：宽高亦反转 */
+    .hero img {
+        width: 96px;
+        height: 120px;
+        flex: 0 0 96px;
+        min-width: 96px;
+        min-height: 120px;
+        max-width: 96px;
+        max-height: 120px;
+        border-radius: 8px;
+    }
+
+    .intro .name,
+    .intro h2 {
+        font-size: 1.1rem;
+    }
+
+    .intro p,
+    .intro .bio {
+        font-size: 0.95rem;
+    }
 }
 
 .papers,
@@ -208,18 +316,90 @@ body {
     border: 1px solid #eef2ff
 }
 
-.papers ul,
-.awards ul {
-    list-style: none
+/* Papers list: make each paper a card (keeps previous .pub-item styles) */
+.papers ul {
+    list-style: none;
+    padding: 0;
+    margin: 8px 0 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
 .papers li {
-    padding: 10px 0;
-    border-bottom: 1px dashed #eef3ff
+    padding: 14px 16px;
+    background: var(--card);
+    border: 1px solid rgba(42, 108, 223, 0.06);
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(42, 108, 223, 0.04);
+    color: var(--text);
+    line-height: 1.35;
+    transition: transform .14s ease, box-shadow .14s ease;
+    overflow: hidden;
 }
 
-.papers li:last-child {
-    border-bottom: 0
+/* Awards: style like education (each award on its own card with hover effect) */
+.awards ul {
+    list-style: none;
+    padding: 0;
+    margin: 8px 0 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.awards li {
+    padding: 14px 16px;
+    background: var(--card);
+    border: 1px solid rgba(42, 108, 223, 0.06);
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(42, 108, 223, 0.04);
+    color: var(--text);
+    line-height: 1.35;
+    transition: transform .14s ease, box-shadow .14s ease;
+    overflow: hidden;
+}
+
+/* Contact: style like awards (each contact item is a card with hover) */
+.contact {
+    background: var(--card);
+    padding: 16px;
+    border-radius: 10px;
+    margin-top: 16px;
+    border: 1px solid #eef2ff;
+}
+
+.contact ul {
+    list-style: none;
+    padding: 0;
+    margin: 8px 0 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.contact li {
+    padding: 14px 16px;
+    background: var(--card);
+    border: 1px solid rgba(42, 108, 223, 0.06);
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(42, 108, 223, 0.04);
+    color: var(--text);
+    line-height: 1.35;
+    transition: transform .14s ease, box-shadow .14s ease;
+    overflow: hidden;
+}
+
+.contact li:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 14px 32px rgba(42, 108, 223, 0.08);
+}
+
+@media (max-width: 700px) {
+    .contact li {
+        padding: 12px;
+        border-radius: 8px;
+    }
 }
 
 .meta {
@@ -253,12 +433,65 @@ body {
     }
 
     .hero img {
-        width: 100px;
-        height: 120px;
-        flex: 0 0 120px;
-        max-width: 100px;
-        min-width: 100px;
-        min-height: 120px;
-        max-height: 120px;
+        width: 120px;
+        height: 100px;
+        flex: 0 0 100px;
+        max-width: 120px;
+        min-width: 120px;
+        min-height: 100px;
+        max-height: 100px;
+    }
+}
+
+/* 教育背景美化 */
+.education {
+    background: var(--card);
+    padding: 16px;
+    border-radius: 10px;
+    margin-top: 16px;
+    border: 1px solid #eef2ff;
+}
+
+.education ul {
+    list-style: none;
+    padding: 0;
+    margin: 8px 0 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.education li {
+    padding: 14px 16px;
+    background: transparent;
+    /* 内部项不再用独立卡片 */
+    border: none;
+    border-radius: 8px;
+    box-shadow: none;
+    color: var(--text);
+    line-height: 1.35;
+    transition: transform .14s ease, box-shadow .14s ease;
+    overflow: hidden;
+}
+
+/* 日期/时间信息更弱色显示 */
+.education li .edu-date {
+    display: block;
+    color: var(--muted);
+    font-size: 0.92rem;
+    margin-top: 2px;
+}
+
+/* 悬停微动效 */
+.education li:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 14px 32px rgba(42, 108, 223, 0.08);
+}
+
+/* 移动端调整 */
+@media (max-width: 700px) {
+    .education li {
+        padding: 12px;
+        border-radius: 8px;
     }
 }

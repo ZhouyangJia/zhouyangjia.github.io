@@ -198,7 +198,7 @@
             {
                 "title": "Intention-aware log automation (in Chinese)",
                 "authors": "Zhouyang Jia, Shanshan Li, Xiaodong Liu, Ji Wang, and Xiangke Liao",
-                "venue": "SCIENTIA SINICA Informationis, 2020, 50: 1612–1628",
+                "venue": "SCIENTIA SINICA Informationis",
                 "pdf": "assets/papers/2020 中国科学.pdf",
                 "type": "CCF A"
             },
@@ -257,14 +257,14 @@
             {
                 "title": "Do You Really Know How to Configure Your Software? Configuration Constraints in Source Code May Help",
                 "authors": "Xiangke Liao, Shulin Zhou, Shanshan Li, Zhouyang Jia, Xiaodong Liu, and Haochen He.",
-                "venue": "IEEE Transactions on Reliability",
+                "venue": "Transactions on Reliability",
                 "pdf": "assets/papers/2018 TR Liao.pdf",
                 "type": "CCF C"
             },
             {
                 "title": "ConfVD: System Reactions Analysis and Evaluation Through Misconfiguration Injection",
                 "authors": "Shanshan Li, Wang Li, Xiangke Liao, Shaoliang Peng, Shulin Zhou, Zhouyang Jia, and Teng Wang",
-                "venue": "IEEE Transactions on Reliability",
+                "venue": "Transactions on Reliability",
                 "pdf": "assets/papers/2018 TR Li.pdf",
                 "type": "CCF C"
             }
@@ -288,7 +288,7 @@
             {
                 "title": "Survey on Log Research of Large Scale Software System (in Chinese)",
                 "authors": "Xiangke Liao, Shanshan Li, Wei Dong, Zhouyang Jia, Xiaodong Liu, and Shulin Zhou",
-                "venue": "Journal of Software. 27, 8 (2016), 1934-1947.",
+                "venue": "Journal of Software",
                 "pdf": "assets/papers/2016 软件学报.pdf",
                 "type": "CCF A"
             }

@@ -3,7 +3,7 @@
         zh: {
             name: '贾周阳',
             bio: '主要从事操作系统和软件可靠性领域相关研究，目前特别关注开放环境下的软件工程和系统软件等问题。欢迎通过邮件联系。',
-            position: '副研究员，国防科技大学计算机学院',
+            position: '国防科技大学计算机学院副研究员',
             education: '教育背景',
             educationHTML: `
                     <li>国防科技大学，博士（2016.02 — 2020.12）</li>
@@ -30,7 +30,7 @@
         },
         en: {
             name: 'Zhouyang Jia',
-            bio: 'I conduct research in operating systems and software reliability, currently focusing on the software-engineering and systems-software challenges in open environment. Feel free to contact me.',
+            bio: 'I conduct research in operating systems and software reliability, currently focusing on software-engineering and systems-software challenges in open environment. Feel free to contact me.',
             position: 'Associate Professor, College of Computer Science, National University of Defense Technology',
             education: 'Education',
             educationHTML: `
