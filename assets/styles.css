@@ -383,14 +383,6 @@ body {
     overflow: hidden;
 }
 
-.contact {
-    background: var(--card);
-    padding: 16px;
-    border-radius: 10px;
-    margin-top: 16px;
-    border: 1px solid #eef2ff;
-}
-
 .contact ul {
     list-style: none;
     padding: 0;
