@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Zhouyang Jia's Homepage</title>
     <link rel="stylesheet" href="assets/styles.css">
+    <!-- preload profile image to avoid delayed fetch on first render -->
+    <link rel="preload" href="assets/zhouyang.jpg" as="image">
 </head>
 
 <body>
@@ -20,7 +22,9 @@
 
     <main class="container">
         <section class="hero">
-            <img id="profile-photo" src="assets/zhouyang.jpg" alt="Profile photo" />
+            <!-- 固定宽高能避免布局抖动；decoding/fetchpriority 提升加载优先级 -->
+            <img id="profile-photo" src="assets/zhouyang.jpg" alt="Profile photo" width="120" height="150"
+                decoding="async" fetchpriority="high" loading="eager" />
             <div class="intro">
                 <h2 data-i18n-key="name"></h2>
                 <p class="position" data-i18n-key="position"></p>
@@ -51,8 +55,7 @@
 
         <section class="contact" aria-labelledby="contact-heading">
             <h3 id="contact-heading" data-i18n-key="contact"></h3>
-            <p><span data-i18n-key="email"></span></p>
-            <p><span data-i18n-key="address"></span></p>
+            <div id="contact" data-i18n-key="contactHTML">
         </section>
     </main>
 

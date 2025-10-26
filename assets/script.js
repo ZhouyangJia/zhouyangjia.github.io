@@ -6,10 +6,12 @@
             position: '国防科技大学计算机学院副研究员',
             education: '教育背景',
             educationHTML: `
-                    <li>国防科技大学，博士（2016.02 — 2020.12）</li>
-                    <li>美国肯塔基大学，访问学者（2018.08 — 2020.08）</li>
-                    <li>国防科技大学，硕士（2013.09 — 2015.12）</li>
-                    <li>国防科技大学，本科（2009.09 — 2013.07）</li>
+                    <ul>
+                        <li>国防科技大学，博士（2016.02 — 2020.12）</li>
+                        <li>美国肯塔基大学，访问学者（2018.08 — 2020.08）</li>
+                        <li>国防科技大学，硕士（2013.09 — 2015.12）</li>
+                        <li>国防科技大学，本科（2009.09 — 2013.07）</li>
+                    </ul>
                 `,
             papers: '论文',
             awards: '获奖',
@@ -24,8 +26,12 @@
                     </ul>
                 `,
             contact: '联系方式',
-            email: '邮箱: jiazhouyang@nudt.edu.cn',
-            address: '地址: 湖南省长沙市开福区德雅路109号, 410072',
+            contactHTML: `
+                    <ul>
+                        <li>邮箱: jiazhouyang@nudt.edu.cn</li>
+                        <li>地址: 湖南省长沙市开福区德雅路109号, 410072</li>
+                    </ul>
+                `,
             copyright: '© 2025 贾周阳。保留所有权利。'
         },
         en: {
@@ -34,10 +40,12 @@
             position: 'Associate Professor, College of Computer Science, National University of Defense Technology',
             education: 'Education',
             educationHTML: `
-                    <li>Ph.D. in Software Engineering, National University of Defense Technology (2016.02 — 2020.12)</li>
-                    <li>Visiting Scholar, University of Kentucky, USA (2018.08 — 2020.08)</li>
-                    <li>M.E. in Software Engineering, National University of Defense Technology (2013.09 — 2015.12)</li>
-                    <li>B.E. in Computer Science, National University of Defense Technology (2009.09 — 2013.07)</li>
+                    </ul>
+                        <li>Ph.D. in Software Engineering, National University of Defense Technology (2016.02 — 2020.12)</li>
+                        <li>Visiting Scholar, University of Kentucky, USA (2018.08 — 2020.08)</li>
+                        <li>M.E. in Software Engineering, National University of Defense Technology (2013.09 — 2015.12)</li>
+                        <li>B.E. in Computer Science, National University of Defense Technology (2009.09 — 2013.07)</li>
+                    </ul>
                 `,
             papers: 'Publications',
             awards: 'Awards',
@@ -52,14 +60,20 @@
                     </ul>
                 `,
             contact: 'Contact',
-            email: 'Email: jiazhouyang@nudt.edu.cn',
-            address: 'Address: 109 Deya Road, Changsha, China, 410072',
+            contactHTML: `
+                    <ul>
+                        <li>Email: jiazhouyang@nudt.edu.cn</li>
+                        <li>Address: 109 Deya Road, Changsha, China, 410072</li>
+                    </ul>
+                `,
             copyright: '© 2025 Zhouyang Jia. All rights reserved.'
         }
     };
 
     let publicationsData = null;
     let currentLang = 'zh';
+    let rafPending = false;
+    let pendingLang = null;
 
     // Helpers
     const $ = sel => document.querySelector(sel);
@@ -179,7 +193,21 @@
         container.appendChild(frag);
     }
 
-    function applyI18n(lang) {
+    // debounce/lang batching: 延迟一次 DOM 批量更新，避免多次重绘
+    function scheduleApplyI18n(lang) {
+        pendingLang = lang;
+        if (rafPending) return;
+        rafPending = true;
+        requestAnimationFrame(() => {
+            rafPending = false;
+            const langToApply = pendingLang || 'zh';
+            applyI18nNow(langToApply);
+            pendingLang = null;
+        });
+    }
+
+    // 把原 applyI18n 的实际操作拆成 applyI18nNow（立即执行）供 rAF 调用
+    function applyI18nNow(lang) {
         const map = i18n[lang] || i18n.zh;
         currentLang = lang;
         document.querySelectorAll('[data-i18n-key]').forEach(el => {
@@ -192,7 +220,6 @@
             }
         });
 
-        // update contact/email/address explicit fields (if present)
         const phoneEl = document.querySelector('[data-i18n-key="phone"]');
         if (phoneEl) phoneEl.textContent = map.phone || '';
         const emailEl = document.querySelector('[data-i18n-key="email"]');
@@ -200,7 +227,6 @@
         const addressEl = document.querySelector('[data-i18n-key="address"]');
         if (addressEl) addressEl.textContent = map.address || '';
 
-        // render publications (DOM)
         if (publicationsData) {
             renderPublicationsDOM(publicationsData);
         }
@@ -228,11 +254,11 @@
         const preferred = localStorage.getItem('preferredLang') ||
             ((navigator.language && navigator.language.startsWith('en')) ? 'en' : 'zh');
 
-        btnZh?.addEventListener('click', () => applyI18n('zh'));
-        btnEn?.addEventListener('click', () => applyI18n('en'));
+        btnZh?.addEventListener('click', () => scheduleApplyI18n('zh'));
+        btnEn?.addEventListener('click', () => scheduleApplyI18n('en'));
 
         // initial render
-        applyI18n(preferred);
+        scheduleApplyI18n(preferred);
     }
 
     // start

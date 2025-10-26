@@ -238,26 +238,21 @@ body {
 
 /* 头像：固定大小、矩形（宽高反过来）、禁止伸缩，稳定布局 */
 .hero img {
+    display: block;
+    will-change: transform, opacity;
+    /* 提示浏览器优化这两个属性的更新 */
+    backface-visibility: hidden;
+    /* 避免图片影响父容器布局重排 */
+    contain: content;
+    /* 保证宽高稳定（与 index.html width/height 对应） */
     width: 120px;
     height: 150px;
-    /* 之前是 150x120，已反过来为 120x150 */
     object-fit: cover;
-    border-radius: 10px;
-    border: 4px solid #fff;
-    box-shadow: 0 12px 30px rgba(20, 40, 80, 0.12);
-    flex: 0 0 120px;
-    /* 保持横向空间稳定（以宽度为基准） */
-    min-width: 120px;
-    min-height: 150px;
-    max-width: 120px;
-    max-height: 150px;
-    transition: transform .18s ease, box-shadow .18s ease;
 }
 
-/* 头像悬停微放大 */
+/* 如果有动画仅用 transform/opacity（避免改变 width/height/margins） */
 .hero img:hover {
-    transform: translateY(-4px) scale(1.03);
-    box-shadow: 0 18px 36px rgba(20, 40, 80, 0.16);
+    transform: translateY(-3px) scale(1.02);
 }
 
 /* 介绍卡片：半透明卡片式，内部排版清晰 */
@@ -367,7 +362,6 @@ body {
     overflow: hidden;
 }
 
-/* Awards: style like education (each award on its own card with hover effect) */
 .awards ul {
     list-style: none;
     padding: 0;
@@ -389,7 +383,6 @@ body {
     overflow: hidden;
 }
 
-/* Contact: style like awards (each contact item is a card with hover) */
 .contact {
     background: var(--card);
     padding: 16px;
@@ -492,11 +485,10 @@ body {
 
 .education li {
     padding: 14px 16px;
-    background: transparent;
-    /* 内部项不再用独立卡片 */
-    border: none;
-    border-radius: 8px;
-    box-shadow: none;
+    background: var(--card);
+    border: 1px solid rgba(42, 108, 223, 0.06);
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(42, 108, 223, 0.04);
     color: var(--text);
     line-height: 1.35;
     transition: transform .14s ease, box-shadow .14s ease;
