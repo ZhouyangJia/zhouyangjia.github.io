@@ -239,20 +239,24 @@ body {
 /* 头像：固定大小、矩形（宽高反过来）、禁止伸缩，稳定布局 */
 .hero img {
     display: block;
+    width: 120px;
+    height: 150px;
+    /* 与 index.html 保持一致 */
+    object-fit: cover;
+    border-radius: 10px;
     will-change: transform, opacity;
-    /* 提示浏览器优化这两个属性的更新 */
+    /* 提示浏览器优化这些属性 */
     backface-visibility: hidden;
     /* 避免图片影响父容器布局重排 */
     contain: content;
-    /* 保证宽高稳定（与 index.html width/height 对应） */
-    width: 120px;
-    height: 150px;
-    object-fit: cover;
+    /* 如果需要动画，仅用 transform/opacity（避免改变 box model） */
+    transition: transform .18s ease, box-shadow .18s ease, opacity .12s ease;
 }
 
-/* 如果有动画仅用 transform/opacity（避免改变 width/height/margins） */
+/* 鼠标交互仅影响合成层属性（transform/opacity） */
 .hero img:hover {
     transform: translateY(-3px) scale(1.02);
+    opacity: 0.99;
 }
 
 /* 介绍卡片：半透明卡片式，内部排版清晰 */
@@ -311,11 +315,6 @@ body {
     .hero img {
         width: 96px;
         height: 120px;
-        flex: 0 0 96px;
-        min-width: 96px;
-        min-height: 120px;
-        max-width: 96px;
-        max-height: 120px;
         border-radius: 8px;
     }
 

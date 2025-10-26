@@ -75,6 +75,20 @@
     let rafPending = false;
     let pendingLang = null;
 
+    function scheduleApplyI18n(lang) {
+        pendingLang = lang;
+        if (rafPending) return;
+        rafPending = true;
+        requestAnimationFrame(() => {
+            rafPending = false;
+            const langToApply = pendingLang || 'zh';
+            // 假设有 applyI18nNow 或 applyI18n 已实现为立即更新的函数
+            if (typeof applyI18nNow === 'function') applyI18nNow(langToApply);
+            else if (typeof applyI18n === 'function') applyI18n(langToApply);
+            pendingLang = null;
+        });
+    }
+
     // Helpers
     const $ = sel => document.querySelector(sel);
     const create = (tag, cls) => {
@@ -201,7 +215,9 @@
         requestAnimationFrame(() => {
             rafPending = false;
             const langToApply = pendingLang || 'zh';
-            applyI18nNow(langToApply);
+            // 假设有 applyI18nNow 或 applyI18n 已实现为立即更新的函数
+            if (typeof applyI18nNow === 'function') applyI18nNow(langToApply);
+            else if (typeof applyI18n === 'function') applyI18n(langToApply);
             pendingLang = null;
         });
     }
@@ -254,10 +270,12 @@
         const preferred = localStorage.getItem('preferredLang') ||
             ((navigator.language && navigator.language.startsWith('en')) ? 'en' : 'zh');
 
+        // btnZh?.addEventListener('click', () => applyI18n('zh'));
+        // btnEn?.addEventListener('click', () => applyI18n('en'));
         btnZh?.addEventListener('click', () => scheduleApplyI18n('zh'));
         btnEn?.addEventListener('click', () => scheduleApplyI18n('en'));
 
-        // initial render
+        // 初始渲染也可用 scheduleApplyI18n(preferred)
         scheduleApplyI18n(preferred);
     }
 
