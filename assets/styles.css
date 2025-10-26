@@ -113,17 +113,46 @@
     white-space: nowrap;
 }
 
-/* type 标记样式 */
+/* type 标记样式（默认） */
 .paper-type {
     display: inline-block;
     padding: 4px 8px;
     border-radius: 6px;
-    background: rgba(42, 108, 223, 0.12);
     color: var(--accent);
     font-weight: 700;
     font-size: 0.82rem;
     border: 1px solid rgba(42, 108, 223, 0.18);
     white-space: nowrap;
+    background: rgba(42, 108, 223, 0.06);
+}
+
+/* 区分样式：CCF A - 绿色调（突出） */
+.paper-type.type-ccf-a {
+    background: rgba(22, 163, 74, 0.12);
+    color: #147a3a;
+    border-color: rgba(20, 122, 58, 0.18);
+}
+
+/* CCF B - 橙色调（次突出） */
+.paper-type.type-ccf-b {
+    background: rgba(245, 166, 35, 0.10);
+    color: #a45c00;
+    border-color: rgba(245, 166, 35, 0.18);
+}
+
+/* CCF C - 蓝灰色调（普通） */
+.paper-type.type-ccf-c {
+    background: rgba(60, 96, 160, 0.06);
+    color: #2b4e9e;
+    border-color: rgba(60, 96, 160, 0.12);
+}
+
+/* 其他自定义 type 可用 "type-xxx" 类扩展样式 */
+@media (max-width:700px) {
+    .paper-type {
+        font-size: 0.78rem;
+        padding: 3px 7px;
+    }
 }
 
 /* 移动端：恢复垂直布局，按钮与标记置于下方左对齐 */

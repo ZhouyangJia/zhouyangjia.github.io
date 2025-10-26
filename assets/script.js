@@ -30,7 +30,7 @@
         },
         en: {
             name: 'Zhouyang Jia',
-            bio: 'I conduct research in operating systems and software reliability, currently focusing on software-engineering and systems-software challenges in open environment. Feel free to contact me.',
+            bio: 'I conduct research in operating systems and software reliability, currently focusing on software-engineering and systems-software challenges in open environments. Feel free to contact me.',
             position: 'Associate Professor, College of Computer Science, National University of Defense Technology',
             education: 'Education',
             educationHTML: `
@@ -59,85 +59,140 @@
     };
 
     let publicationsData = null;
+    let currentLang = 'zh';
 
-    function renderPublications(data, lang) {
-        if (!data || !Array.isArray(data)) return '';
-        const useZh = lang === 'zh';
-        let html = '';
-        data.forEach(group => {
-            html += `<div class="pub-group"><div class="pub-year">${group.year}</div><ul class="pub-list">`;
-            group.papers.forEach(p => {
-                const title = (useZh && p.title_zh) ? p.title_zh : (p.title || '');
-                // 优先使用显式的 authors / venue 字段；若缺失则回退到 legacy meta 拆分
-                let authors = p.authors || '';
-                let venue = p.venue || '';
-                if ((!authors || !venue) && p.meta) {
-                    const meta = p.meta;
-                    const dotIdx = meta.indexOf('.');
-                    if (dotIdx !== -1) {
-                        authors = authors || meta.slice(0, dotIdx).trim();
-                        venue = venue || meta.slice(dotIdx + 1).trim();
-                    } else {
-                        const zDot = meta.indexOf('。');
-                        if (zDot !== -1) {
-                            authors = authors || meta.slice(0, zDot).trim();
-                            venue = venue || meta.slice(zDot + 1).trim();
-                        } else {
-                            venue = venue || meta.trim();
-                        }
-                    }
-                }
+    // Helpers
+    const $ = sel => document.querySelector(sel);
+    const create = (tag, cls) => {
+        const el = document.createElement(tag);
+        if (cls) el.className = cls;
+        return el;
+    };
 
-                // 高亮作者名（支持英文与中文）
-                let authorsHtml = '';
-                if (authors) {
-                    const esc = s => String(s)
-                        .replace(/&/g, '&amp;')
-                        .replace(/</g, '&lt;')
-                        .replace(/>/g, '&gt;')
-                        .replace(/"/g, '&quot;')
-                        .replace(/'/g, '&#39;');
-                    authorsHtml = esc(authors)
-                        .replace(/Zhouyang Jia/gi, '<span class="author-highlight">Zhouyang Jia</span>')
-                        .replace(/贾周阳/g, '<span class="author-highlight">贾周阳</span>');
-                }
-
-                const pdf = p.pdf || '#';
-                // 将 PDF 按钮与 type（CCF A/B/C 等）并排放在右侧
-                html += `<li class="pub-item">
-                            <div class="paper-content">
-                              <div class="paper-title">${title}</div>
-                              ${authors ? `<div class="paper-authors">${authorsHtml}</div>` : ''}
-                              ${venue ? `<div class="paper-venue">${venue}</div>` : ''}
-                            </div>
-                            <div class="paper-actions">
-                              <a class="pdf-link" href="${encodeURI(pdf)}" target="_blank" rel="noopener">PDF</a>
-                              ${p.type ? `<span class="paper-type">${p.type}</span>` : ''}
-                            </div>
-                         </li>`;
-            });
-            html += `</ul></div>`;
-        });
-        return html;
+    function safeText(el, text) {
+        el.textContent = text ?? '';
+        return el;
     }
 
-    function setLang(lang) {
+    // highlight occurrences of the target name (supports English/Chinese),
+    // returns HTML string (safe-escaped except the highlight spans)
+    function highlightAuthorsHtml(raw) {
+        if (!raw) return '';
+        // escape first
+        const esc = s => String(s)
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#39;');
+
+        const escaped = esc(raw);
+        // highlight both English and Chinese variants, case-insensitive for English
+        return escaped
+            .replace(/贾周阳/g, '<span class="author-highlight">贾周阳</span>')
+            .replace(/Zhouyang Jia/gi, match => `<span class="author-highlight">${match}</span>`);
+    }
+
+    // render a single paper item using DOM (better performance/safer than heavy innerHTML)
+    function renderPaperItem(p) {
+        const li = create('li', 'pub-item');
+
+        const content = create('div', 'paper-content');
+        const title = create('div', 'paper-title');
+        safeText(title, p._title || p.title || '');
+        content.appendChild(title);
+
+        if (p._authors || p.authors) {
+            const auth = create('div', 'paper-authors');
+            // set innerHTML because we intentionally insert highlight spans
+            auth.innerHTML = highlightAuthorsHtml(p._authors || p.authors);
+            content.appendChild(auth);
+        }
+
+        if (p._venue || p.venue) {
+            const venue = create('div', 'paper-venue');
+            safeText(venue, p._venue || p.venue || '');
+            content.appendChild(venue);
+        }
+
+        const actions = create('div', 'paper-actions');
+
+        const pdfLink = create('a', 'pdf-link');
+        // encodeURI for the full path; preserve readable filenames
+        const href = p.pdf ? encodeURI(p.pdf) : '#';
+        pdfLink.setAttribute('href', href);
+        pdfLink.setAttribute('target', '_blank');
+        pdfLink.setAttribute('rel', 'noopener noreferrer');
+        safeText(pdfLink, 'PDF');
+        actions.appendChild(pdfLink);
+
+        if (p.type) {
+            const typeBadge = create('span', 'paper-type');
+            // 根据 type 生成可识别的类名，例如 "CCF A" -> "type-ccf-a"
+            const typeClass = 'type-' + String(p.type).toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9\-]/g, '');
+            typeBadge.classList.add(typeClass);
+            safeText(typeBadge, p.type);
+            actions.appendChild(typeBadge);
+        }
+
+        li.appendChild(content);
+        li.appendChild(actions);
+        return li;
+    }
+
+    // render all publications into container using DOM operations and a DocumentFragment
+    function renderPublicationsDOM(data) {
+        const container = $('#publications');
+        if (!container) return;
+        container.innerHTML = ''; // clear
+        if (!Array.isArray(data)) return;
+
+        const frag = document.createDocumentFragment();
+
+        data.forEach(group => {
+            const groupWrap = create('div', 'pub-group');
+
+            const yearEl = create('div', 'pub-year');
+            safeText(yearEl, group.year || '');
+            groupWrap.appendChild(yearEl);
+
+            const list = create('ul', 'pub-list');
+
+            if (Array.isArray(group.papers)) {
+                // create items
+                for (let i = 0, len = group.papers.length; i < len; i++) {
+                    const p = group.papers[i];
+                    // allow per-language override fields (title_zh/title_en etc.)
+                    // set transient _title/_authors/_venue based on currentLang
+                    p._title = (currentLang === 'zh' && p.title_zh) ? p.title_zh : p.title;
+                    p._authors = (currentLang === 'zh' && p.authors_zh) ? p.authors_zh : p.authors;
+                    p._venue = (currentLang === 'zh' && p.venue_zh) ? p.venue_zh : p.venue;
+
+                    list.appendChild(renderPaperItem(p));
+                }
+            }
+
+            groupWrap.appendChild(list);
+            frag.appendChild(groupWrap);
+        });
+
+        container.appendChild(frag);
+    }
+
+    function applyI18n(lang) {
         const map = i18n[lang] || i18n.zh;
+        currentLang = lang;
         document.querySelectorAll('[data-i18n-key]').forEach(el => {
             const key = el.getAttribute('data-i18n-key');
-            if (key && key.endsWith('HTML') && map[key]) {
+            if (!key) return;
+            if (key.endsWith('HTML') && map[key]) {
                 el.innerHTML = map[key];
             } else if (map[key]) {
                 el.textContent = map[key];
             }
         });
 
-        // render publications from JSON source
-        const pubEl = document.getElementById('publications');
-        if (pubEl && publicationsData) {
-            pubEl.innerHTML = renderPublications(publicationsData, lang);
-        }
-
+        // update contact/email/address explicit fields (if present)
         const phoneEl = document.querySelector('[data-i18n-key="phone"]');
         if (phoneEl) phoneEl.textContent = map.phone || '';
         const emailEl = document.querySelector('[data-i18n-key="email"]');
@@ -145,29 +200,41 @@
         const addressEl = document.querySelector('[data-i18n-key="address"]');
         if (addressEl) addressEl.textContent = map.address || '';
 
-        document.getElementById('btn-zh').classList.toggle('active', lang === 'zh');
-        document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+        // render publications (DOM)
+        if (publicationsData) {
+            renderPublicationsDOM(publicationsData);
+        }
+
+        document.getElementById('btn-zh')?.classList.toggle('active', lang === 'zh');
+        document.getElementById('btn-en')?.classList.toggle('active', lang === 'en');
         localStorage.setItem('preferredLang', lang);
     }
 
-    // load publications JSON, then initialize UI
-    async function loadPublicationsAndInit() {
+    // initialize: load JSON once, wire buttons, apply language
+    async function init() {
         try {
-            const res = await fetch('assets/papers.json', { cache: "no-store" });
-            if (!res.ok) throw new Error('Failed to load publications');
+            const res = await fetch('assets/papers.json', { cache: 'no-store' });
+            if (!res.ok) throw new Error(`HTTP ${res.status}`);
             publicationsData = await res.json();
-        } catch (e) {
-            console.error('Could not load publications.json:', e);
-            publicationsData = []; // avoid errors
+        } catch (err) {
+            console.error('Failed to load publications:', err);
+            publicationsData = [];
         }
 
-        const preferred = localStorage.getItem('preferredLang') || (navigator.language && navigator.language.startsWith('en') ? 'en' : 'zh');
+        // wire language buttons (if present)
+        const btnZh = document.getElementById('btn-zh');
+        const btnEn = document.getElementById('btn-en');
 
-        document.getElementById('btn-zh').addEventListener('click', () => setLang('zh'));
-        document.getElementById('btn-en').addEventListener('click', () => setLang('en'));
+        const preferred = localStorage.getItem('preferredLang') ||
+            ((navigator.language && navigator.language.startsWith('en')) ? 'en' : 'zh');
 
-        setLang(preferred);
+        btnZh?.addEventListener('click', () => applyI18n('zh'));
+        btnEn?.addEventListener('click', () => applyI18n('en'));
+
+        // initial render
+        applyI18n(preferred);
     }
 
-    loadPublicationsAndInit();
+    // start
+    document.addEventListener('DOMContentLoaded', init);
 })();
