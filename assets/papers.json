@@ -78,13 +78,6 @@
                 "type": "CCF A"
             },
             {
-                "title": "MissConf: LLM-Enhanced Reproduction of Configuration-Triggered Bugs",
-                "authors": "Ying Fu, Teng Wang, Shanshan Li, Jinyan Ding, Shulin Zhou, Zhouyang Jia, Wang Li, Yu Jiang, and Xiangke Liao",
-                "venue": "ICSE 2024",
-                "pdf": "assets/papers/2024 ICSE.pdf",
-                "type": "CCF A"
-            },
-            {
                 "title": "Who is in Charge here? Understanding How Runtime Configuration Affects Software along with Variables&Constants",
                 "authors": "Chaopeng Luo, Yuanliang Zhang, Haochen He, Zhouyang Jia, Teng Wang, Shulin Zhou, Si Zheng, and Shanshan Li",
                 "venue": "APSEC 2024 (Distinguished Paper Award)",
